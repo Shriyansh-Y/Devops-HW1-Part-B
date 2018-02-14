@@ -92,6 +92,13 @@ If the configuration management costs are avoided initially, ultimately one face
 
 *Scenario 3:* In case the issue is found out, the manual efforts that has to go in determining the damage and fixing that issue could have been saved, had there been configuartion management. If the same changes are involved in multiple counts, the effort multiplies.
 
+
+
+### Screencast:  
+
+[ScreenCast Video](https://youtu.be/dci5lAfUfzA)
+
+
 ### References:
 [1] http://agiletesting.blogspot.com/2010/03/automated-deployment-systems-push-vs.html   
 [2] https://www.upguard.com/blog/5-configuration-management-boss  
