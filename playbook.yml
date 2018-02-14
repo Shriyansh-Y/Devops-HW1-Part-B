@@ -1,0 +1,40 @@
+- hosts: localhost
+  tasks:
+    - name: Installing nodejs repository
+      become: yes
+      shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+
+    - name: Installing npm and nodejs
+      become: yes
+      apt: 
+        name: "{{ item }}" 
+        state: latest 
+        update_cache: yes
+      with_items:
+        - nodejs
+    - name: Installing git
+      become: yes
+      apt: name=git state=latest update_cache=yes
+
+    - name: Cloning git repository
+      become: yes
+      git: 
+       repo: https://github.ncsu.edu/scyadav/HW1-Part-2
+       dest: /home/vagrant/hw/
+       force: yes
+
+    - name: Install packages based on package.json using npm
+      become: yes
+      npm:
+       path: /home/vagrant/hw/
+
+    - name: Run aws.js to create EC2 instance and print public IPAddress
+      command: node aws.js
+      args:
+        chdir: /home/vagrant/hw/
+
+    - name: Run main.js to create Digital ocean instance and print public IPAddress
+      command: node main.js
+      args:
+        chdir: /home/vagrant/hw/
+
