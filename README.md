@@ -96,5 +96,5 @@ If the configuration management costs are avoided initially, ultimately one face
 
 ### References:
 [1]   
-[2] https://www.upguard.com/blog/5-configuration-management-boss
+[2] https://www.upguard.com/blog/5-configuration-management-boss  
 [3] https://thwack.solarwinds.com/community/solarwinds-community/geek-speak_tht/blog/2013/10/10/bad-configuration-management-impact-on-network-operations
