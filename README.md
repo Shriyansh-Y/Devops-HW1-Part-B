@@ -27,8 +27,6 @@ Running the playbook.yml to create a droplet instance and print out the IP Addre
 
 ## Concepts
 
-Answer in your own words the following questions:
-
 **1. Define idempotency. Give two examples of an idempotent operation and non-idempotent operation.**
 
 Idempotency can be simply defined as "applying the same operation, multiple times results in the same state". It can be inferred from this definition that idempotency means a system is able to reach a desired state, regardless of its current state.
@@ -95,6 +93,6 @@ If the configuration management costs are avoided initially, ultimately one face
 *Scenario 3:* In case the issue is found out, the manual efforts that has to go in determining the damage and fixing that issue could have been saved, had there been configuartion management. If the same changes are involved in multiple counts, the effort multiplies.
 
 ### References:
-[1]   
+[1] http://agiletesting.blogspot.com/2010/03/automated-deployment-systems-push-vs.html   
 [2] https://www.upguard.com/blog/5-configuration-management-boss  
 [3] https://thwack.solarwinds.com/community/solarwinds-community/geek-speak_tht/blog/2013/10/10/bad-configuration-management-impact-on-network-operations
