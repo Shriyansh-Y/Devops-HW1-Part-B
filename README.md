@@ -1,34 +1,58 @@
 # HW1- Part2
 
-We will use [digitalocean](https://developers.digitalocean.com/v2/) to automatically create virtual images on a hosted server. 
-
-* Automatically provision using a code api from **AWS and Digital Ocean**. The code will request new VM and then print out the ip address of the new server.
+* Automatically provision using a code api from **AWS and [Digital Ocean](https://developers.digitalocean.com/v2/)**. The code will request new VM and then print out the ip address of the new server.
  
-### DigitialOcean
+The environment needs to be setup with nodejs, git, npm  
+ 
+### DigitalOcean
 
-DigitialOcean is one of the cheapest and lowest image providers.
-* Obtain your own api key.
-* Get your ssh key using:
+DigitalOcean is one of the cheapest and lowest image providers.
+1. Obtain your own api key.
+2. Get your ssh key using:
 ```bash
 curl -X GET -H 'Content-Type: application/json' -H 'Authorization: Bearer $TOKEN' "https://api.digitalocean.com/v2/account/keys"
 ```
+The code for creating the droplet and getting its IP is in main.js
 
 ### Amazon Web Services (AWS)
 
 AWS is a rich computation platform for supporting many services. We will create an account with AWS, and use its API.
+1. Create an AWS account
+2. Get the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY.
+3. Get the public key .pem file from AWS.
+
+The code for creating the EC2 instance and getting its IP is in aws.js
+
+Running the playbook.yml to create a droplet instance and print out the IP Address as well as AWS EC2 instance and print its IP Address.
 
 ## Concepts
 
 Answer in your own words the following questions:
 
-1. Define idempotency. Give two examples of an idempotent operation and non-idempotent operation.
+**1. Define idempotency. Give two examples of an idempotent operation and non-idempotent operation.**
 
 Idempotency can be simply defined as "applying the same operation, multiple times results in the same state". It can be inferred from this definition that idempotency means a system is able to reach a desired state, regardless of its current state.
 
 **Examples:**  
+* REST API calls: GET, PUT, DELETE, HEAD, OPTIONS and TRACE are idempotent.
+* REST API calls: POST APIs will be non-idempotent.
 
-2. Describe several issues related to management of your inventory.
-The following are the issues related to managemnet of inventory:
+
+**2. Describe several issues related to management of your inventory.**
+The following are the assets you own in your inventory
+* Servers and IP addresses.
+* Roles
+* SSH keys
+* SSH host signatures
+* Passwords
+* API tokens
+
+The following are the issues related to management of inventory:
+* One cannot commit these sensitive details on github and must be careful with that. 
+* Storing them locally and using either environment variables or other indirect reference techniques to use them.
+* Managing and isolating access to certain servers and secret configuration.
+* Dynamic configuration properties (running in live servers) can be difficult to manage and debug.  
+
 
 **3. Describe two configuration models. What are disadvantages and advantages of each model?**
 
@@ -39,7 +63,7 @@ The two configuration models are as follows:
 **Advantages of push:**
 * Easy to bootstrap. A bare server can be setup with push, no customization needed.
 * Errors are synchronous: If Setup code doesn’t work, push system will get the error back. No need to check any logs.
-* Development is sensible: Change to the setup scripts, can be done from the machine itself, and the machine doesn’t have to accept connections from the slave or no special instructions to keep the slave from setting itself up as a production machine. Thus, no daemon that might need modifications. Basically, just change the code, and run it.  
+* Development is sensible: Change to the setup scripts, can be done from the machine itself, and the machine doesn’t have to accept connections from the slave or no special instructions to keep the slave from setting itself up as a production machine. Thus, no daemon need modifications. Basically, just change the code, and run it.  
 
 **Disadvantages of a push:**
 * Lack of full automation: Not usually possible to boot a server and have it configure itself without some sort of client/server protocol which push systems don't generally support.
@@ -71,6 +95,6 @@ If the configuration management costs are avoided initially, ultimately one face
 *Scenario 3:* In case the issue is found out, the manual efforts that has to go in determining the damage and fixing that issue could have been saved, had there been configuartion management. If the same changes are involved in multiple counts, the effort multiplies.
 
 ### References:
-[1] 
+[1]   
 [2] https://www.upguard.com/blog/5-configuration-management-boss
 [3] https://thwack.solarwinds.com/community/solarwinds-community/geek-speak_tht/blog/2013/10/10/bad-configuration-management-impact-on-network-operations
